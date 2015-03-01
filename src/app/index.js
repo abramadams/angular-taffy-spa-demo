@@ -3,20 +3,15 @@
 
   angular.module( 'app',
     [
-      /* Angular modules*/
-      'ngAnimate',
-      //'ngCookies',
-      'ngTouch',
-      'ngSanitize',
-      /* Third Party modules*/
-      'ui.router',
-      'ui.bootstrap',
-      'angularLocalStorage',
+      'app.core', // cross site shared modules
+
       /* app specific modules*/
+      'app.layout',
       'app.services.item',
       'app.services.cart'
     ] )
-    .config( function( $stateProvider, $urlRouterProvider ){
+    .config( function( $stateProvider, $urlRouterProvider, $locationProvider ){
+      //$locationProvider.html5Mode( true );
       $stateProvider
         .state( 'home', {
           url: '/',
@@ -30,12 +25,22 @@
           controller: 'ItemsController',
           controllerAs: 'vm'
         } )
-        .state( 'item', {
+        .state( 'items.item', {
           url: '/item/:id',
           templateUrl: 'app/items/items.html',
           controller: 'ItemsController',
           controllerAs: 'vm'
+        } )
+        .state( 'cart', {
+          url: '/cart',
+          templateUrl: 'app/cart/cart.html',
+          controller: 'CartController',
+          controllerAs: 'vm'
         } );
       $urlRouterProvider.otherwise( '/' );
-    } );
+
+    } ).run( [ '$state', '$stateParams',
+               function( $state, $stateParams ){
+                 //this solves page refresh and getting back to state
+               } ] );
 })();

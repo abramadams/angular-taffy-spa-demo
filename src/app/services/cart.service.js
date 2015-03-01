@@ -144,7 +144,7 @@
       var self = this;
       var checkout = $http( {
         method: 'post',
-        url: 'https://www.fundsforcauses.com/mobileRaise/api/index.cfm/checkout',
+        url: '/server/api/index.cfm/checkout',
         data: {
           cart: {
             items: this.getCart(),
