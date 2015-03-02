@@ -40,19 +40,19 @@
                 <label>Quantity:</label>
 
                 <div class="input-group" id="quantity">
-                                        <span class="input-group-btn">
-                                            <button type="button" class="btn btn-primary"
-                                                    ng-click="updateQuantity($index,item.quantity+1)">
-                                              <i class="fa fa-plus"></i>
-                                            </button>
-                                        </span>
+                  <span class="input-group-btn">
+                      <button type="button" class="btn btn-primary"
+                              ng-click="updateQuantity($index,item.quantity+1)">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                  </span>
                   <input type="text" class="spinner-input form-control" ng-model="item.quantity">
-                                        <span class="input-group-btn">
-                                            <button type="button" class="btn btn-default"
-                                                    ng-click="updateQuantity($index,item.quantity-1)">
-                                              <i class="fa fa-minus"></i>
-                                            </button>
-                                        </span>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default"
+                                ng-click="updateQuantity($index,item.quantity-1)">
+                          <i class="fa fa-minus"></i>
+                        </button>
+                    </span>
                 </div>
               </div>
               <div class="divider"></div>

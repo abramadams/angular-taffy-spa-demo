@@ -6,14 +6,31 @@
   angular.module( 'app' )
     .controller( controllerId, ItemsController );
 
-  ItemsController.$inject = [ '$scope', '$q', '$stateParams', 'itemService' ];
+  ItemsController.$inject = [ '$rootScope', '$q', '$stateParams', 'itemService', 'cartService' ];
 
-  function ItemsController( $scope, $q, $stateParams, itemService ){
+  function ItemsController( $rootScope, $q, $stateParams, itemService, cartService ){
+    // initialize the cart (will either pull existing cart from cookie or create a new one)
+    cartService.init( $rootScope.cartName );
+    $rootScope.cart = cartService.getCart();
+
     // hang all "$scope" type stuff off of vm (view model)
     var vm = this;
 
     // Exports.
     vm.items = [];
+    vm.addButtonText = "Add to Cart";
+    // grab the index of the current item = if exists
+    vm.cartIndex = cartService.getItemIndex( $stateParams.id );
+    vm.item = {
+      id: $stateParams.id,
+      name: "",
+      description: "",
+      price: "0",
+      quantity: 1,
+      image: "",
+      terms: []
+    };
+    vm.addToCart = addToCart;
 
     //Activate the view (basically call all the services and log it)
     activate();
@@ -29,9 +46,6 @@
       );
     }
 
-
-
-
     function getItems( itemId ){
 
       if( itemId ){
@@ -44,6 +58,20 @@
         vm.items = data;
         return vm.items;
       } );
+    }
+
+    function addToCart(){
+
+      if( vm.cartIndex !== undefined ){
+        cartService.updateQuantity( vm.cartIndex, parseInt( vm.item.quantity, 10 ) );
+      }else{
+        vm.cartIndex = cartService.addItem( vm.item, parseInt( vm.item.quantity, 10 ) );
+      }
+      vm.item = cartService.getItem( vm.cartIndex );
+      $rootScope.itemsInCart = cartService.totalItems();
+      $rootScope.cart = cartService.getCart();
+      $rootScope.cartTotal = cartService.cartTotal();
+      vm.addButtonText = "Update Cart";
 
     }
 
