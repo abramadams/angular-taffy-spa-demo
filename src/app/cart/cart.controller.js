@@ -20,7 +20,7 @@
 
     function activate(){
       // promises should be an array of function calls i.e. [getBulls(),getPreferences()]
-      var promises = [ getCart( $stateParams.id ) ];
+      var promises = [ getCart() ];
 
       return $q.all( promises )
         .then( function(){
@@ -33,6 +33,7 @@
 
       return cartService.getCart().then( function( data ){
         vm.cart = data;
+        console.log( vm.cart );
         return vm.cart;
       } );
 

@@ -16,8 +16,8 @@
 
         <div class="row spacer">
           <div class="col-md-12">
-            <button type="button" class="btn btn-primary btn-block btn-direction btn-left" ng-click="go('/items/list')">
-              <span class="fa fa-chevron-circle-left"></span>
+            <button type="button" class="btn btn-primary btn-block btn-direction btn-left" ui-sref="items">
+              <span class="glyphicon glyphicon-circle-arrow-left"></span>
               Go Back to Item List
             </button>
           </div>
@@ -33,7 +33,7 @@
                 <label>Item:</label>
                 {{ item.name }}
                 <a ng-click="removeItem( $index )" class="btn btn-danger btn-xs pull-right">
-                  <span class="fa fa-trash-o"></span>
+                  <span class="glyphicon glyphicon-trash"></span>
                 </a>
               </div>
               <div class="col-xs-12 col-md-4">
@@ -43,14 +43,14 @@
                   <span class="input-group-btn">
                       <button type="button" class="btn btn-primary"
                               ng-click="updateQuantity($index,item.quantity+1)">
-                        <i class="fa fa-plus"></i>
+                        <i class="glyphicon glyphicon-plus"></i>
                       </button>
                   </span>
                   <input type="text" class="spinner-input form-control" ng-model="item.quantity">
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default"
                                 ng-click="updateQuantity($index,item.quantity-1)">
-                          <i class="fa fa-minus"></i>
+                          <i class="glyphicon glyphicon-minus"></i>
                         </button>
                     </span>
                 </div>
@@ -72,7 +72,7 @@
           Cart Total: {{cartTotal | currency : '$'}}
           <a ng-click="emptyCart()" class="btn btn-danger btn-xs pull-right">
             Empty Cart
-            <span class="fa fa-trash-o"></span>
+            <span class="glyphicon glyphicon-trash"></span>
           </a>
         </div>
       </div>
@@ -82,15 +82,15 @@
         <div class="col-md-12">
           <button class="btn btn-success btn-block" ng-click="checkout()">
             Checkout
-            <span class="fa fa-money"></span>
+            <span class="glyphicon glyphicon-credit-card"></span>
           </button>
         </div>
       </div>
       <div class="divider"></div>
       <div class="row">
         <div class="col-md-12">
-          <button type="button" class="btn btn-info btn-block btn-direction btn-left" ng-click="go('/items/list')">
-            <span class="fa fa-chevron-circle-left"></span>
+          <button type="button" class="btn btn-info btn-block btn-direction btn-left" ui-sref="items">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span>
             Go Back to Item List
           </button>
         </div>
