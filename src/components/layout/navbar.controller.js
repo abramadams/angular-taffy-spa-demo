@@ -9,15 +9,11 @@
   /* @ngInject */
   function NavbarController( $location ){
     var vm = this;
-
-    vm.isCurrent = isCurrent;
-
+    vm.isCollapsed = true;
+    vm.siteTitle = "dev.Objective - AngularJS+Taffy Demo";
     activate();
 
     function activate(){ }
 
-    function isCurrent( route ){
-      return $location.$$path == route ? 'active' : '';
-    }
   }
 })();

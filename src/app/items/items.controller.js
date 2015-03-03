@@ -6,9 +6,9 @@
   angular.module( 'app' )
     .controller( controllerId, ItemsController );
 
-  ItemsController.$inject = [ '$rootScope', '$q', '$stateParams', 'itemService', 'cartService' ];
+  ItemsController.$inject = [ '$rootScope', '$q', '$stateParams', '$state', 'itemService', 'cartService' ];
 
-  function ItemsController( $rootScope, $q, $stateParams, itemService, cartService ){
+  function ItemsController( $rootScope, $q, $stateParams, $state, itemService, cartService ){
     // initialize the cart (will either pull existing cart from cookie or create a new one)
     cartService.init( $rootScope.cartName );
     $rootScope.cart = cartService.getCart();
@@ -22,7 +22,7 @@
     // grab the index of the current item = if exists
     vm.cartIndex = cartService.getItemIndex( $stateParams.id );
     vm.item = {
-      id: $stateParams.id,
+      linkId: $stateParams.id,
       name: "",
       description: "",
       price: "0",
@@ -50,7 +50,7 @@
 
       if( itemId ){
         return itemService.getItem( itemId ).then( function( data ){
-          vm.items = data;
+          vm.items = data[ 0 ];
           return vm.items;
         } );
       }
@@ -74,6 +74,5 @@
       vm.addButtonText = "Update Cart";
 
     }
-
   }
 })();
