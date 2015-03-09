@@ -6,14 +6,19 @@
   angular.module( 'app' )
     .controller( controllerId, CartController );
 
-  CartController.$inject = [ '$scope', '$q', '$stateParams', 'cartService' ];
+  CartController.$inject = [ '$q', '$state', 'cartService' ];
 
-  function CartController( $scope, $q, $stateParams, cartService ){
+  function CartController( $q, $state, cartService ){
     // hang all "$scope" type stuff off of vm (view model)
     var vm = this;
 
     // Exports.
     vm.cart = [];
+
+    vm.updateQuantity = updateQuantity;
+    vm.removeItem = removeItem;
+    vm.checkout = checkout;
+    vm.emptyCart = emptyCart;
 
     //Activate the view (basically call all the services and log it)
     activate();
@@ -30,13 +35,26 @@
     }
 
     function getCart(){
+      vm.cart = cartService.getCart();
+    }
 
-      return cartService.getCart().then( function( data ){
-        vm.cart = data;
-        console.log( vm.cart );
-        return vm.cart;
-      } );
+    function updateQuantity( cartIndex, quantity ){
+      cartService.updateQuantity( cartIndex, quantity );
+    }
 
+    function removeItem( cartIndex ){
+      cartService.removeItem( cartIndex );
+      getCart();
+    }
+
+    function emptyCart(){
+      cartService.emptyCart();
+      getCart();
+    }
+
+    function checkout(){
+      //cartService.checkout();
+      $state.go( 'checkout.profile' );
     }
 
   }

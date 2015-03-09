@@ -1,0 +1,59 @@
+<div class="page">
+  <button class="btn btn-dark btn-block" ui-sref="cart">
+    <span class="glyphicon glyphicon-arrow-left"></span>
+    Back to Cart
+  </button>
+  <div class="callout callout-success" style="padding:10px 0px 3px 5px;margin:0px;" ng-if="!vm.cart.length == 0">
+    <h4>Order Total: {{vm.cartTotal | currency : '$'}}</h4>
+  </div>
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <strong>
+        <span class="glyphicon glyphicon-th"></span>
+        Checking Out
+      </strong>
+    </div>
+    <div class="alert alert-warning" style="margin-bottom:0px;" ng-show="!vm.canSubmit() && !vm.cart.length == 0">
+      You must fill in the required fields to complete the payment.
+    </div>
+    <div class="alert alert-warning" ng-if="vm.cart.length == 0">
+      <h1>
+        <span class="glyphicon glyphicon-shopping-cart"></span>
+        Cart is Empty
+      </h1>
+
+      <div class="row spacer">
+        <div class="col-md-12">
+          <button type="button" class="btn btn-primary btn-block btn-direction btn-left" ui-sref="items">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span>
+            Go Back to Item List
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="vm.cart.length !== 0">
+      <div id="status-buttons" class="text-center">
+        <button ui-sref-active="btn-primary" ui-sref=".profile" class="btn btn-large btn-default">
+          <span class="badge badge-primary">1</span> Profile
+        </button>
+        <button ui-sref-active="btn-primary" ng-disabled="!vm.canSubmit()" ui-sref=".address"
+                class="btn btn-large btn-default">
+          <span class="badge badge-primary">2</span> Address
+        </button>
+        <button ui-sref-active="btn-primary" ng-disabled="!vm.canSubmit()" ui-sref=".payment"
+                class="btn btn-large btn-default">
+          <span class="badge badge-primary">3</span> Payment
+        </button>
+      </div>
+
+      <form stripe-form="handleStripe" name="vm.checkoutForm">
+        <!-- our nested state views will be injected here -->
+        <div id="form-views" ui-view></div>
+      </form>
+
+    </div>
+  </section>
+
+
+</div>

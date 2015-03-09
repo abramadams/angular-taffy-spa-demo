@@ -34,8 +34,27 @@
         .state( 'cart', {
           url: '/cart',
           templateUrl: 'app/cart/cart.html',
-          controller: '',
+          controller: 'CartController',
           controllerAs: 'vm'
+        } )
+        .state( 'checkout', {
+          url: '/checkout',
+          abstract: true,
+          templateUrl: 'app/checkout/checkout.html',
+          controller: 'CheckoutController',
+          controllerAs: 'vm'
+        } )
+        .state( 'checkout.profile', {
+          url: '',
+          templateUrl: 'app/checkout/checkout.profile.html'
+        } )
+        .state( 'checkout.address', {
+          url: '/address',
+          templateUrl: 'app/checkout/checkout.address.html'
+        } )
+        .state( 'checkout.payment', {
+          url: '/payment',
+          templateUrl: 'app/checkout/checkout.payment.html'
         } );
       $urlRouterProvider.otherwise( '/' );
 

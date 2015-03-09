@@ -15,9 +15,16 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div collapse="vm.isCollapsed" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li ui-sref-active="active"><a ui-sref="home" ui-sref-opts="{ reload: true }">Home</a></li>
-        <li ui-sref-active="active"><a ui-sref="items" ui-sref-opts="{ reload: true }">Items</a></li>
-        <li ui-sref-active="active"><a ui-sref="cart" ui-sref-opts="{ reload: true }">Cart</a></li>
+        <li ui-sref-active="active">
+          <a ui-sref="home" ui-sref-opts="{ reload: true }">Home</a>
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="items" ui-sref-opts="{ reload: true }">Items</a>
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="cart" ui-sref-opts="{ reload: true }" class="glyphicon glyphicon-shopping-cart"></a>
+        </li>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li id="fat-menu" class="dropdown" ng-class="{ open : vm.myLinks }" ng-init="vm.myLinks = false"

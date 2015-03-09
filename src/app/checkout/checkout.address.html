@@ -1,0 +1,45 @@
+<div class="panel-body" id="customerForm">
+  <div>
+    <h3>Address Information</h3>
+
+    <div class="form-group">
+      <div>
+        <input type="text" class="form-control ng-pristine" placeholder="Street Address 1"
+               data-ng-model="vm.checkoutForm.addressLine1">
+        <br>
+        <input type="text" class="form-control ng-pristine" placeholder="Street Address 2"
+               data-ng-model="vm.checkoutForm.address_line2">
+        <br>
+        <input type="text" class="form-control ng-pristine" placeholder="City"
+               data-ng-model="vm.checkoutForm.addressCity">
+        <br>
+        <label>State</label>
+        <select ng-model="addressState" placeholder="State"
+                ng-options="state.abbreviation as state.name for state in vm.states"
+                class="form-control ng-pristine"/>
+        <br>
+        <input type="text" class="form-control ng-pristine" placeholder="Zip Code"
+               data-ng-model="vm.checkoutForm.addressZip">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Phone</label>
+      <input type="phone" class="form-control ng-pristine" placeholder="Phone Number"
+             data-ng-model="vm.checkoutForm.phone">
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <a ui-sref="checkout.profile" ng-disabled="!vm.canSubmit()"
+           class="btn btn-primary btn-direction btn-left pull-left">
+          <span class="glyphicon glyphicon-arrow-left"></span>
+          Back
+        </a>
+        <a ui-sref="checkout.payment" ng-disabled="!vm.canSubmit()"
+           class="btn btn-primary btn-direction btn-right pull-right">
+          Next
+          <span class="glyphicon glyphicon-arrow-right"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

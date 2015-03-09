@@ -5,3 +5,7 @@ bower_components/
 dist/
 /.project
 .idea
+.name
+codeStyleSettings.xml
+deployment.xml
+devobjective.iml

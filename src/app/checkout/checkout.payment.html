@@ -1,0 +1,57 @@
+<div class="panel-body" id="paymentForm">
+  <div>
+    <h3>Payment Information (Credit Card)</h3>
+
+    <div>
+
+      <div class="form-group">
+        <label>Card number</label>
+        <input type="text" placeholder="Card Number" name="number" class="form-control"
+               ng-model="vm.checkoutForm.number"
+               payments-validate="card"
+               payments-format="card"
+               payments-type-model="vm.checkoutForm.type"
+               ng-class="vm.checkoutForm.number.$card.type"/>
+      </div>
+
+      <div class="form-group">
+        <label>Expiration Date</label>
+        <input type="text" class="form-control" ng-model="vm.checkoutForm.expiry" payments-validate="expiry"
+               payments-format="expiry"/>
+      </div>
+
+      <div class="form-group">
+        <label>Name on card</label>
+        <input type="text" class="form-control" placeholder="Name as it appears on card"
+               ng-model="vm.checkoutForm.name">
+      </div>
+
+      <div class="form-group">
+        <label>CVC</label>
+        <input type="text" class="form-control" ng-model="vm.checkoutForm.cvc" payments-validate="cvc"
+               payments-format="cvc"
+               payments-type-model="vm.checkoutForm.type"/>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-lg btn-block btn-success pull-right"
+                  data-ng-disabled="!vm.canSubmit()">
+            Pay
+            <span class="glyphicon glyphicon-credit-card"></span>
+          </button>
+        </div>
+      </div>
+      <div class="row spacer">
+        <div class="col-md-12">
+          <a ui-sref="checkout.address" ng-disabled="!vm.canSubmit()"
+             class="btn btn-primary btn-direction btn-left pull-left">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+            Back
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

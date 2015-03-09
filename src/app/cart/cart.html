@@ -6,33 +6,33 @@
     </strong>
   </div>
   <div class="panel-body">
-    <div ng-hide="cart.length">
+    <div ng-if="!vm.cart.length">
 
       <div class="alert alert-warning">
-        <p class="size-h1">
-          <span class="fa fa-shopping-cart"></span>
+        <h1>
+          <span class="glyphicon glyphicon-shopping-cart"></span>
           Cart is Empty
-        </p>
+        </h1>
 
         <div class="row spacer">
           <div class="col-md-12">
             <button type="button" class="btn btn-primary btn-block btn-direction btn-left" ui-sref="items">
-              <span class="glyphicon glyphicon-circle-arrow-left"></span>
+              <span class="glyphicon glyphicon-arrow-left"></span>
               Go Back to Item List
             </button>
           </div>
         </div>
       </div>
     </div>
-    <div ng-show="cart.length">
+    <div ng-if="vm.cart.length">
       <div class="row">
         <ul class="list-group">
-          <li class="list-group-item" ng-repeat="item in cart">
+          <li class="list-group-item" ng-repeat="item in vm.cart">
             <div class="row">
               <div class="col-xs-12 col-md-4">
                 <label>Item:</label>
                 {{ item.name }}
-                <a ng-click="removeItem( $index )" class="btn btn-danger btn-xs pull-right">
+                <a ng-click="vm.removeItem( $index )" class="btn btn-danger btn-xs pull-right">
                   <span class="glyphicon glyphicon-trash"></span>
                 </a>
               </div>
@@ -42,14 +42,14 @@
                 <div class="input-group" id="quantity">
                   <span class="input-group-btn">
                       <button type="button" class="btn btn-primary"
-                              ng-click="updateQuantity($index,item.quantity+1)">
+                              ng-click="vm.updateQuantity($index,item.quantity+1)">
                         <i class="glyphicon glyphicon-plus"></i>
                       </button>
                   </span>
                   <input type="text" class="spinner-input form-control" ng-model="item.quantity">
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default"
-                                ng-click="updateQuantity($index,item.quantity-1)">
+                                ng-click="vm.updateQuantity($index,item.quantity-1)">
                           <i class="glyphicon glyphicon-minus"></i>
                         </button>
                     </span>
@@ -70,7 +70,7 @@
       <div class="row">
         <div class="col-md-12">
           Cart Total: {{cartTotal | currency : '$'}}
-          <a ng-click="emptyCart()" class="btn btn-danger btn-xs pull-right">
+          <a ng-click="vm.emptyCart()" class="btn btn-danger btn-xs pull-right">
             Empty Cart
             <span class="glyphicon glyphicon-trash"></span>
           </a>
@@ -80,7 +80,7 @@
 
       <div class="row">
         <div class="col-md-12">
-          <button class="btn btn-success btn-block" ng-click="checkout()">
+          <button class="btn btn-success btn-block" ng-click="vm.checkout()">
             Checkout
             <span class="glyphicon glyphicon-credit-card"></span>
           </button>
@@ -90,7 +90,7 @@
       <div class="row">
         <div class="col-md-12">
           <button type="button" class="btn btn-info btn-block btn-direction btn-left" ui-sref="items">
-            <span class="glyphicon glyphicon-circle-arrow-left"></span>
+            <span class="glyphicon glyphicon-arrow-left"></span>
             Go Back to Item List
           </button>
         </div>

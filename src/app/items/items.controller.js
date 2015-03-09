@@ -21,15 +21,7 @@
     vm.addButtonText = "Add to Cart";
     // grab the index of the current item = if exists
     vm.cartIndex = cartService.getItemIndex( $stateParams.id );
-    vm.item = {
-      linkId: $stateParams.id,
-      name: "",
-      description: "",
-      price: "0",
-      quantity: 1,
-      image: "",
-      terms: []
-    };
+
     vm.addToCart = addToCart;
 
     //Activate the view (basically call all the services and log it)
@@ -47,10 +39,17 @@
     }
 
     function getItems( itemId ){
-
+      var defaultItem = {
+        linkId: itemId,
+        name: "",
+        description: "",
+        price: "0",
+        quantity: 1,
+        image: ""
+      };
       if( itemId ){
         return itemService.getItem( itemId ).then( function( data ){
-          vm.items = data[ 0 ];
+          vm.items = $.extend( {}, defaultItem, data[ 0 ] );
           return vm.items;
         } );
       }
@@ -63,11 +62,11 @@
     function addToCart(){
 
       if( vm.cartIndex !== undefined ){
-        cartService.updateQuantity( vm.cartIndex, parseInt( vm.item.quantity, 10 ) );
+        cartService.updateQuantity( vm.cartIndex, parseInt( vm.items.quantity, 10 ) );
       }else{
-        vm.cartIndex = cartService.addItem( vm.item, parseInt( vm.item.quantity, 10 ) );
+        vm.cartIndex = cartService.addItem( vm.items, parseInt( vm.items.quantity, 10 ) );
       }
-      vm.item = cartService.getItem( vm.cartIndex );
+      vm.items = cartService.getItem( vm.cartIndex );
       $rootScope.itemsInCart = cartService.totalItems();
       $rootScope.cart = cartService.getCart();
       $rootScope.cartTotal = cartService.cartTotal();
