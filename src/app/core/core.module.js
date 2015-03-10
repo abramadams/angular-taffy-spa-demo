@@ -12,6 +12,7 @@
       'ngplus',
       'ui.router',
       'ui.bootstrap',
+      'angularPayments',
       'angularLocalStorage'
     ] );
 })();
