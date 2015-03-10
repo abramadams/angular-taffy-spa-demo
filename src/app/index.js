@@ -8,7 +8,8 @@
       /* app specific modules*/
       'app.layout',
       'app.services.item',
-      'app.services.cart'
+      'app.services.cart',
+      'app.widgets'
     ] )
     .config( function( $stateProvider, $urlRouterProvider, $locationProvider ){
       //$locationProvider.html5Mode( true );

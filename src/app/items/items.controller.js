@@ -45,7 +45,8 @@
         description: "",
         price: "0",
         quantity: 1,
-        image: ""
+        image: "",
+        thumbnail: ""
       };
       if( itemId ){
         return itemService.getItem( itemId ).then( function( data ){

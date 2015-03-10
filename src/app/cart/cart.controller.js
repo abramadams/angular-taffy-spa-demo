@@ -6,9 +6,9 @@
   angular.module( 'app' )
     .controller( controllerId, CartController );
 
-  CartController.$inject = [ '$q', '$state', 'cartService' ];
+  CartController.$inject = [ '$q', '$scope', '$state', 'cartService' ];
 
-  function CartController( $q, $state, cartService ){
+  function CartController( $q, $scope, $state, cartService ){
     // hang all "$scope" type stuff off of vm (view model)
     var vm = this;
 
@@ -24,7 +24,7 @@
     activate();
 
     function activate(){
-      // promises should be an array of function calls i.e. [getBulls(),getPreferences()]
+      // promises should be an array of function calls i.e. [getItems(),getPreferences()]
       var promises = [ getCart() ];
 
       return $q.all( promises )

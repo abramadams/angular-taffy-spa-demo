@@ -33,23 +33,13 @@
 
         <form role="form">
           <div class="form-group">
-            <label for="quantity">Quantity</label>
+            <label>Quantity</label>
             <span ng-show="vm.cartIndex !== undefined" class="label label-info"> <i
               class="glyphicon glyphicon-exclamation-sign"></i> Item In Cart</span>
 
-            <div class="input-group" data-ui-spinner id="quantity">
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-primary" data-spin="up">
-                      <i class="glyphicon glyphicon-plus"></i>
-                    </button>
-                </span>
-              <input type="text" class="spinner-input form-control" ng-model="vm.items.quantity" data-rule="quantity">
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" data-spin="down">
-                      <i class="glyphicon glyphicon-minus"></i>
-                    </button>
-                </span>
-            </div>
+            <input spinner item="vm.items" value="vm.items.quantity"
+                   callback="vm.updateQuantity($index,vm.items.quantity)"/>
+
           </div>
           <div class="form-group">
             <label>Price</label>

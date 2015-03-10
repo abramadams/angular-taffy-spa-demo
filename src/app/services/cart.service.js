@@ -240,6 +240,7 @@
         quantity: parseInt( quantity, 10 ),
         price: parseFloat( item.price ),
         image: item.image,
+        thumbnail: item.thumbnail,
         description: item.description
       } );
 
