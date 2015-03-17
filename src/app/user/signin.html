@@ -1,0 +1,55 @@
+<div class="page-signin">
+
+  <div class="signin-header">
+    <section class="logo text-center">
+      <a href="#/dashboard">Sign In</a>
+    </section>
+  </div>
+  <div ng-show="error" class="alert alert-danger">
+    <h2>Error signing in</h2>
+
+    <p>{{errorMsg}}</p>
+  </div>
+
+  <div class="main-body" ng-controller="loginCtrl">
+    <div class="container">
+      <div class="form-container">
+
+        <form class="form-horizontal" ng-submit="login()" method="post">
+          <fieldset>
+            <div class="form-group">
+              <div class="btn-icon-lined btn-icon-round btn-icon-sm btn-default-light">
+                <span class="glyphicon glyphicon-envelope"></span>
+              </div>
+              <input type="email" id="username" name="username" ng-model="username"
+                     class="form-control input-lg input-round text-center" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <div class="btn-icon-lined btn-icon-round btn-icon-sm btn-default-light">
+                <span class="glyphicon glyphicon-lock"></span>
+              </div>
+              <input type="password" id="password" name="password" ng-model="password"
+                     class="form-control input-lg input-round text-center" placeholder="Password">
+            </div>
+            <!-- <div class="form-group">
+                 <label class="switch switch-success">Remember me <input type="checkbox" id="rememberme" name="rememberme" checked><i></i></label>
+            </div> -->
+            <div class="form-group">
+              <button class="btn btn-primary btn-lg btn-round btn-block text-center">Log in</button>
+            </div>
+          </fieldset>
+        </form>
+
+        <section>
+          <!-- <p class="text-center"><a href="#/forgot-password">Forgot your password?</a>
+          </p> -->
+          <!-- <p class="text-center text-muted text-small">Don't have an account yet? <a href="#/signup">Sign up</a> -->
+          <p class="text-center text-muted text-small">Don't have an account yet? <a href="#/signup">Sign up</a>
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+</div>

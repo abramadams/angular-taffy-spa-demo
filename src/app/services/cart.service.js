@@ -2,12 +2,12 @@
   'use strict';
 
   angular.module( 'app.services.cart', [ 'angularLocalStorage' ] )
-    .factory( 'cartService', cartService );
+    .factory( 'CartService', CartService );
 
-  cartService.$inject = [ '$q', '$http', 'storage' ];
+  CartService.$inject = [ '$q', '$http', 'storage' ];
 
   /* @ngInject */
-  function cartService( $q, $http, storage ){
+  function CartService( $q, $http, storage ){
     return {
       itemsCookie: [],
       init: init,
@@ -339,12 +339,12 @@
       } ).success( function( data, status, headers, config ){
         // this callback will be called asynchronously
         // when the response is available
-        // self.emptyCart();
+        self.emptyCart();
         return data;
       } ).error( function( data, status, headers, config ){
         // called asynchronously if an error occurs
         // or server returns response with an error status.
-        // alert( status );
+        //alert( status );
         console.log( data, status, headers, config );
         return data;
       } );

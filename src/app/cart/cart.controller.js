@@ -6,9 +6,9 @@
   angular.module( 'app' )
     .controller( controllerId, CartController );
 
-  CartController.$inject = [ '$q', '$scope', '$state', 'cartService' ];
+  CartController.$inject = [ '$q', '$state', 'CartService' ];
 
-  function CartController( $q, $scope, $state, cartService ){
+  function CartController( $q, $state, CartService ){
     // hang all "$scope" type stuff off of vm (view model)
     var vm = this;
 
@@ -35,25 +35,25 @@
     }
 
     function getCart(){
-      vm.cart = cartService.getCart();
+      vm.cart = CartService.getCart();
     }
 
     function updateQuantity( cartIndex, quantity ){
-      cartService.updateQuantity( cartIndex, quantity );
+      CartService.updateQuantity( cartIndex, quantity );
     }
 
     function removeItem( cartIndex ){
-      cartService.removeItem( cartIndex );
+      CartService.removeItem( cartIndex );
       getCart();
     }
 
     function emptyCart(){
-      cartService.emptyCart();
+      CartService.emptyCart();
       getCart();
     }
 
     function checkout(){
-      //cartService.checkout();
+      //CartService.checkout();
       $state.go( 'checkout.profile' );
     }
 

@@ -1,0 +1,84 @@
+<div class="page-signup" ng-controller="registerCtrl">
+
+  <div class="signin-header">
+    <section class="logo text-center">
+      <a href="#/{{eventKey}}/">Register</a>
+    </section>
+  </div>
+  <div ng-show="error" class="alert alert-danger">
+    <h2>Error Registering Account</h2>
+
+    <p>{{errorMsg}}</p>
+  </div>
+  <div ng-show="complete" class="alert alert-success">
+    <h2>Account Registered!</h2>
+
+    <p>Please check your email inbox for instructions on how to activate your account.</p>
+  </div>
+  <div class="main-body" ng-hide="complete">
+    <div class="container">
+      <div class="form-container">
+
+        <section>
+          <form class="form-horizontal text-center" ng-submit="register()">
+            <div class="form-group">
+              <div class="btn-icon-lined btn-icon-round btn-icon-sm btn-default-light">
+                <span class="fa fa-user"></span>
+              </div>
+              <input type="text" id="firstName" name="firstName" ng-model="firstName"
+                     class="form-control input-lg input-round text-center" placeholder="First Name">
+            </div>
+            <div class="form-group">
+              <div class="btn-icon-lined btn-icon-round btn-icon-sm btn-default-light">
+                <span class="fa fa-user"></span>
+              </div>
+              <input type="text" id="lastName" name="lastName" ng-model="lastName"
+                     class="form-control input-lg input-round text-center" placeholder="Last Name">
+            </div>
+            <div class="form-group">
+              <div class="btn-icon-lined btn-icon-round btn-icon-sm btn-default-light">
+                <span class="fa fa-key"></span>
+              </div>
+              <input type="text" id="Event Key" name="Event Key" ng-model="eventKey"
+                     class="form-control input-lg input-round text-center" placeholder="Event Key">
+            </div>
+            <div class="form-group">
+              <div class="btn-icon-lined btn-icon-round btn-icon-sm btn-default-light">
+                <span class="fa fa-users"></span>
+              </div>
+              <input type="text" id="group" name="group" ng-model="group"
+                     class="form-control input-lg input-round text-center" placeholder="Group or Team (if applicable)">
+            </div>
+            <div class="form-group">
+              <div class="btn-icon-lined btn-icon-round btn-icon-sm btn-default-light">
+                <span class="glyphicon glyphicon-envelope"></span>
+              </div>
+              <input type="email" id="email" name="email" ng-model="email"
+                     class="form-control input-lg input-round text-center" placeholder="Email - will be your username">
+            </div>
+            <div class="form-group">
+              <div class="btn-icon-lined btn-icon-round btn-icon-sm btn-default-light">
+                <span class="fa fa-ellipsis-h"></span>
+              </div>
+              <input type="password" id="password" name="password" ng-model="password"
+                     class="form-control input-lg input-round text-center" placeholder="Password">
+            </div>
+
+            <div class="form-group">
+              <!--  <p class="text-muted text-small">By clicking on Sign up, you agree to <a href="javascript:;">terms & conditions</a> and <a href="javascript:;">privacy policy</a></p> -->
+              <div class="divider"></div>
+              <button class="btn btn-primary btn-lg btn-round btn-block text-center">Sign up</button>
+            </div>
+
+          </form>
+        </section>
+
+        <section>
+          <p class="text-center text-muted">Already have an account? <a href="#/signin">Log in now</a>
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</div>

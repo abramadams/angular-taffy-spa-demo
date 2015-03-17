@@ -1,0 +1,88 @@
+<div class="page page-table" data-ng-controller="salesCtrl" data-ng-init="getSales()">
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button" class="btn btn-primary btn-block btn-direction btn-left" ng-click="go('/dashboard')">
+        <span class="fa fa-chevron-circle-left"></span>
+        Go Back to Dashboard
+      </button>
+    </div>
+  </div>
+  <section class="panel panel-default table-responsive">
+    <div class="panel-heading">
+      <strong>
+        <span class="glyphicon glyphicon-th"></span>Sales Report</strong>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+          <th>
+            <div class="th">
+              Date
+            </div>
+          </th>
+          <th>
+            <div class="th">
+              Customer
+            </div>
+          </th>
+          <th>
+            <div class="th">
+              Item
+            </div>
+          </th>
+          <th>
+            <div class="th">
+              Quantity
+            </div>
+          </th>
+          <th>
+            <div class="th">
+              Total
+            </div>
+          </th>
+          <th>
+            <div class="th">
+              Payment Method
+            </div>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="sale in sales">
+          <td>
+            {{ sale.date }}
+          </td>
+          <td>
+            {{ sale.customer }}
+          </td>
+          <td>
+            {{ sale.item }}
+          </td>
+          <td>
+            {{ sale.quantity }}
+          </td>
+          <td>{{ sale.total | currency : '$' }}</td>
+          <td>{{ sale.paymentMethod }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- <footer class="table-footer">
+        <div class="row">
+            <div class="col-md-6 page-num-info">
+                <span>
+                    Show
+                    <select data-ng-model="numPerPage" data-ng-options="num for num in numPerPageOpt" data-ng-change="onNumPerPageChange()">
+                    </select>
+                    entries per page
+                </span>
+            </div>
+            <div class="col-md-6 text-right pagination-container">
+                <pagination class="pagination-sm" ng-model="currentPage" total-items="filteredItems.length" max-size="4" ng-change="select(currentPage)" items-per-page="numPerPage" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" boundary-links="true"></pagination>
+            </div>
+        </div>
+    </footer> -->
+  </section>
+
+</div>

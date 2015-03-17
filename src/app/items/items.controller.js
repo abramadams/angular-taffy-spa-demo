@@ -6,12 +6,11 @@
   angular.module( 'app' )
     .controller( controllerId, ItemsController );
 
-  ItemsController.$inject = [ '$rootScope', '$q', '$stateParams', '$state', 'itemService', 'cartService' ];
+  ItemsController.$inject = [ '$q', '$stateParams', 'ItemService', 'CartService' ];
 
-  function ItemsController( $rootScope, $q, $stateParams, $state, itemService, cartService ){
+  function ItemsController( $q, $stateParams, ItemService, CartService ){
     // initialize the cart (will either pull existing cart from cookie or create a new one)
-    cartService.init( $rootScope.cartName );
-    $rootScope.cart = cartService.getCart();
+    CartService.init( 'devObjectiveDemo' );
 
     // hang all "$scope" type stuff off of vm (view model)
     var vm = this;
@@ -20,8 +19,7 @@
     vm.items = [];
     vm.addButtonText = "Add to Cart";
     // grab the index of the current item = if exists
-    vm.cartIndex = cartService.getItemIndex( $stateParams.id );
-
+    vm.cartIndex = CartService.getItemIndex( $stateParams.id );
     vm.addToCart = addToCart;
 
     //Activate the view (basically call all the services and log it)
@@ -49,12 +47,12 @@
         thumbnail: ""
       };
       if( itemId ){
-        return itemService.getItem( itemId ).then( function( data ){
+        return ItemService.getItem( itemId ).then( function( data ){
           vm.items = $.extend( {}, defaultItem, data[ 0 ] );
           return vm.items;
         } );
       }
-      return itemService.getItems().then( function( data ){
+      return ItemService.getItems().then( function( data ){
         vm.items = data;
         return vm.items;
       } );
@@ -63,14 +61,11 @@
     function addToCart(){
 
       if( vm.cartIndex !== undefined ){
-        cartService.updateQuantity( vm.cartIndex, parseInt( vm.items.quantity, 10 ) );
+        CartService.updateQuantity( vm.cartIndex, parseInt( vm.items.quantity, 10 ) );
       }else{
-        vm.cartIndex = cartService.addItem( vm.items, parseInt( vm.items.quantity, 10 ) );
+        vm.cartIndex = CartService.addItem( vm.items, parseInt( vm.items.quantity, 10 ) );
       }
-      vm.items = cartService.getItem( vm.cartIndex );
-      $rootScope.itemsInCart = cartService.totalItems();
-      $rootScope.cart = cartService.getCart();
-      $rootScope.cartTotal = cartService.cartTotal();
+      vm.items = CartService.getItem( vm.cartIndex );
       vm.addButtonText = "Update Cart";
 
     }

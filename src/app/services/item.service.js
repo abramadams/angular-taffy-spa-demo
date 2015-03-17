@@ -3,11 +3,11 @@
 
   angular
     .module( 'app.services.item', [] )
-    .factory( 'itemService', itemService );
+    .factory( 'ItemService', ItemService );
 
-  itemService.$inject = [ '$q' ];
+  ItemService.$inject = [ '$q' ];
   /* @ngInject */
-  function itemService( $q ){
+  function ItemService( $q ){
     return {
       getItem: getItem,
       getItems: getItems

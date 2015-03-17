@@ -6,9 +6,9 @@
   angular.module( 'app' )
     .controller( controllerId, CheckoutController );
 
-  CheckoutController.$inject = [ '$q', '$state', 'cartService' ];
+  CheckoutController.$inject = [ '$q', '$state', 'CartService' ];
 
-  function CheckoutController( $q, $state, cartService ){
+  function CheckoutController( $q, $state, CartService ){
     // hang all "$scope" type stuff off of vm (view model)
     var vm = this;
 
@@ -16,7 +16,7 @@
     vm.cart = [];
     vm.states = [];
     vm.checkoutForm = {};
-    vm.cartTotal = parseFloat( cartService.cartTotal() );
+    vm.cartTotal = parseFloat( CartService.cartTotal() );
 
     vm.checkout = checkout;
     vm.canSubmit = canSubmit;
@@ -36,11 +36,11 @@
     }
 
     function getCart(){
-      vm.cart = cartService.getCart();
+      vm.cart = CartService.getCart();
     }
 
     function getStates(){
-      vm.states = cartService.getStates();
+      vm.states = CartService.getStates();
     }
 
     function canSubmit(){
@@ -48,7 +48,7 @@
     }
 
     function checkout(){
-      cartService.checkout();
+      CartService.checkout();
     }
 
   }
